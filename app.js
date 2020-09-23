@@ -18,6 +18,7 @@ app.use(session({
   secret: "my secret",
   resave: false,
   saveUninitialize: false
+  cookie: { secure: true}
 }));
 
 app.use(passport.initialize());
@@ -121,11 +122,11 @@ app.get("/register",function(req,res){
   res.render("register");
 });
 
+let port =process.env.PORT;
+if(port=== null || port === ""){
+  port = 3000;
+}
 
-
-
-
-
-app.listen(3000 || process.env.PORT , function(){
-  console.log("Server started on port.");
+app.listen(port , function(){
+  console.log("Server started successfully!");
 });
